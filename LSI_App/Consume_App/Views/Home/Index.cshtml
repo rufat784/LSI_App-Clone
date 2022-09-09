@@ -1,0 +1,68 @@
+﻿@model List<VmExport>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Exports</h1>
+</div>
+
+
+<form asp-controller="home" asp-action="index" method="post" class="search-inner p-0">
+    <div class="container">
+        <div class="">
+            <div class="filter-search-box col-3">
+                <div class="form-group">
+                    <div class="input-with-icon">
+                        <input required name="search" type="text" class="form-control" placeholder="Filter by LocalName">
+                        <i class="ti-search"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-search-box col-3">
+                <div class="form-group">
+                    <div class="input-with-icon">
+                        From
+                        <input name="startDate" type="date" class="form-control" placeholder="">
+                        <i class="ti-search"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-search-box col-3">
+                <div class="form-group">
+                    <div class="input-with-icon">
+                        To
+                        <input name="endDate" type="date" class="form-control" placeholder="">
+                        <i class="ti-search"></i>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="Submit" class="btn btn-success mb-4" />
+
+
+            <div class="col-lg-12">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Export Name</th>
+                        <th>Date</th>
+                        <th>Hour</th>
+                        <th>User Name</th>
+                        <th>Local Name</th>
+                    </tr>
+                    @foreach (var export in Model)
+                    {
+                        <tr>
+                            <th>@export.ExportName</th>
+                            <th>@export.CreatedDate.ToString("dd.MM.yyyy")</th>
+                            <th>@export.CreatedDate.ToString("HH:mm")</th>
+                            <th>@export.UserName</th>
+                            <th>@export.LocalName</th>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
